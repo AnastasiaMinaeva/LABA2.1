@@ -7,7 +7,7 @@ public class StringProcessor {
                 char c = input.charAt(i);
                 switch (c) {
                     case '1':
-                        result.append("один");
+                        result.append("один"); //
                         break;
                     case '2':
                         result.append("два");
