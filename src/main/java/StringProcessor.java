@@ -1,3 +1,5 @@
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class StringProcessor {
         //3
@@ -58,4 +60,48 @@ public class StringProcessor {
 
             return result.toString();
         }
-    }
+        //Задание 6
+
+            public static String replaceHex(String input) {
+                if (input == null) {
+                    return null;
+                }
+                StringBuilder result = new StringBuilder();
+                int i = 0;
+                int n = input.length();
+
+                while (i < n) {
+                    if (i + 9 < n &&
+                            input.charAt(i) == '0' &&
+                            (input.charAt(i + 1) == 'x' || input.charAt(i + 1) == 'X')) {
+
+                        String c = input.substring(i + 2, i + 10);
+                        if (isHex8(c)) {
+                            long value = Long.parseLong(c, 16);
+                            result.append(value);
+                            i += 10;
+                            continue;
+                        }
+                    }
+                    result.append(input.charAt(i));
+                    i++;
+                }
+                return result.toString();
+            }
+
+            private static boolean isHex8(String s) {
+                if (s.length() != 8) return false;
+                for (char c : s.toCharArray()) {
+                    if (!isHexDigit(c)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            private static boolean isHexDigit(char c) {
+                return (c >= '0' && c <= '9') ||
+                        (c >= 'A' && c <= 'F') ||
+                        (c >= 'a' && c <= 'f');
+            }
+        }

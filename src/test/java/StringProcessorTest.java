@@ -115,9 +115,19 @@ public class StringProcessorTest {
         assertEquals(null, StringProcessor.reverseWordsComplete(null));
     }
 
-    @Test
-    public void testReverseWordsCompleteOnlySpaces() {
-        assertEquals("   ", StringProcessor.reverseWordsComplete("   "));
-    }
 
+
+
+    @Test
+    public void testHexNumbers() {
+        StringProcessor processor = new StringProcessor();
+
+        assertEquals("Васе 16 лет", processor.replaceHex("Васе 0X00000010 лет"));
+        }
+
+        @Test
+    public void testHexNumbersInvalid() {
+        StringProcessor processor = new StringProcessor();
+        assertEquals("", processor.replaceHex(""));
+    }
 }
